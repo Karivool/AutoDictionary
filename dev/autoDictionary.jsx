@@ -16,13 +16,13 @@ let autoDictionary = React.createClass({
   },
 
   handleChange(property, event) {
-    this.setState({
-      word: event.target.value,
-    });
-    let upWord = this.state.word.toUpperCase();
+    this.setState({word: event.target.value}, this.handleLookup(event.target.value));
+  },
+
+  handleLookup(word) {
+    let upWord = word.toUpperCase();
 
     if (this.state.dict[upWord] !== undefined) {
-      console.log("word found");
       this.setState({
         definition: this.state.dict[upWord],
       });
@@ -38,8 +38,6 @@ let autoDictionary = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.word);
-    console.log(this.state.definition);
     return (
       <div className="main">
         <form className="dict-form" onSubmit={this.handleSubmit}>
