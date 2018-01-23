@@ -3,6 +3,7 @@
   font-family: Arvo;
   font-weight: bold;
   font-size: 48px;
+  min-width: 250px;
   margin: 50px;
   padding: 50px;
 }
@@ -12,6 +13,7 @@
   font-family: Arvo;
   font-weight: bold;
   font-size: 24px;
+  min-width: 250px;
   margin: 50px;
   padding: 50px;
 }
@@ -21,4 +23,5 @@ input.dict-form-word {
   border-radius: 10px;
   border: 5px solid cornflowerblue;
   padding: 5px;
+  width: 100%;
 }
