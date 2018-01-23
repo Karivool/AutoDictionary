@@ -1,0 +1,24 @@
+.dict-form {
+  background: aliceblue;
+  font-family: Arvo;
+  font-weight: bold;
+  font-size: 48px;
+  margin: 50px;
+  padding: 50px;
+}
+
+.dict-def {
+  background: aliceblue;
+  font-family: Arvo;
+  font-weight: bold;
+  font-size: 24px;
+  margin: 50px;
+  padding: 50px;
+}
+
+input.dict-form-word {
+  background: white;
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
+  padding: 5px;
+}
