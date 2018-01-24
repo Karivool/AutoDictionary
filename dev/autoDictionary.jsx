@@ -13,11 +13,13 @@ let autoDictionary = React.createClass({
       word: word,
       definition: "",
       dict: Dictionary,
+      sounds: SoundFX,
     };
   },
 
   handleChange(property, event) {
     this.setState({word: event.target.value}, this.handleLookup(event.target.value));
+    this.playSound();
   },
 
   handleLookup(word) {
@@ -41,10 +43,22 @@ let autoDictionary = React.createClass({
       this.setState({ definition: definition });
       this.setState({ word: word });
     }
+
+    this.playSound();
   },
 
   handleSubmit(event) {
     event.preventDefault();
+  },
+
+  playSound() {
+    const sounds = this.state.sounds;
+    let trackNumber = Math.abs(Math.round(Math.random() * sounds.length - 1));
+    let track = sounds[trackNumber];
+    let sound = new Audio(track);
+
+    sound.currentTime = 0;
+    sound.play();
   },
 
   render: function() {

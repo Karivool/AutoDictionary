@@ -1,10 +1,10 @@
 const SoundFX = [
-  "./sounds/type1.mp3",
-  "./sounds/type2.mp3",
-  "./sounds/type3.mp3",
-  "./sounds/type4.mp3",
-  "./sounds/type5.mp3",
-  "./sounds/type6.mp3",
+  "./sounds/type1.wav",
+  "./sounds/type2.wav",
+  "./sounds/type3.wav",
+  "./sounds/type4.wav",
+  "./sounds/type5.wav",
+  "./sounds/type6.wav",
 ]
 
 module.exports = SoundFX;
