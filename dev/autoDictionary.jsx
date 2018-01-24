@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 const Dictionary = require('../constants/dictionary.js');
+const SoundFX = require('../constants/sounds.js');
 
 let autoDictionary = React.createClass({
 
@@ -15,20 +16,6 @@ let autoDictionary = React.createClass({
     };
   },
 
-  createChoices(definition) {
-    let words = definition.split(" ");
-    let output = words.map((word, idx) => {
-      console.log(this);
-      return (
-        <span key={`${word}-${idx}`}
-              onClick={this.handleLookupClick(word)}
-        >
-        {word}
-      </span>);
-    })
-    console.log(output);
-  },
-
   handleChange(property, event) {
     this.setState({word: event.target.value}, this.handleLookup(event.target.value));
   },
@@ -39,7 +26,6 @@ let autoDictionary = React.createClass({
 
     if (definition !== undefined) {
       this.setState({ definition: definition });
-      // this.createChoices(definition);
     } else {
       this.setState({
         definition: "",
@@ -48,7 +34,13 @@ let autoDictionary = React.createClass({
   },
 
   handleLookupClick(word) {
-    console.log("in handleLookupClick");
+    let upWord = word.toUpperCase();
+    let definition = this.state.dict[upWord];
+
+    if (definition !== undefined) {
+      this.setState({ definition: definition });
+      this.setState({ word: word });
+    }
   },
 
   handleSubmit(event) {
@@ -58,6 +50,9 @@ let autoDictionary = React.createClass({
   render: function() {
     return (
       <div className="main">
+        <div className="instructions">
+          • Type in a word to look it up. Click on words in the definition to look those up
+        </div>
         <form className="dict-form" onSubmit={this.handleSubmit}>
           Word: <input type="text"
                        value={this.state.word}
@@ -66,9 +61,15 @@ let autoDictionary = React.createClass({
                        pattern="[A-Za-z]*"
                        />
         </form>
-
         <div className="dict-def">
-          Definition: {this.state.definition}
+          Definition: { this.state.definition.split(" ").map((word, idx) => {
+              return (<span
+                key={`${word}-${idx}`}
+                value={word}
+                onClick={this.handleLookupClick.bind(this, word)}>
+              {word} </span>);
+            })
+          }
         </div>
       </div>
     );
