@@ -1,3 +1,11 @@
+.instructions {
+  font-family: Arvo;
+  font-weight: bold;
+  font-size: 24px;
+  min-width: 250px;
+  padding: 50px 50px 0px 50px;
+}
+
 .dict-form {
   background: aliceblue;
   font-family: Arvo;
