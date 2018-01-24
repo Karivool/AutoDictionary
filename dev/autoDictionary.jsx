@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 const Dictionary = require('../constants/dictionary.js');
 const SoundFX = require('../constants/sounds.js');
+const Keys = require('../constants/keys.js');
 
 let autoDictionary = React.createClass({
 
@@ -14,6 +15,7 @@ let autoDictionary = React.createClass({
       definition: "",
       dict: Dictionary,
       sounds: SoundFX,
+      keys: Keys,
     };
   },
 
@@ -37,6 +39,8 @@ let autoDictionary = React.createClass({
 
   handleLookupClick(word) {
     let upWord = word.toUpperCase();
+    upWord = this.wordCheck(upWord);
+
     let definition = this.state.dict[upWord];
 
     if (definition !== undefined) {
@@ -59,6 +63,18 @@ let autoDictionary = React.createClass({
 
     sound.currentTime = 0;
     sound.play();
+  },
+
+  wordCheck(word) {
+    const keys = this.state.keys;
+    let beginning = keys[word[0]];
+    let end = keys[word[word.length -1]];
+    if (beginning === true) {
+      word = word.substr(1);
+    } else if (end === true) {
+      word = word.slice(0, -1);
+    }
+    return word;
   },
 
   render: function() {
